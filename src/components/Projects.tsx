@@ -546,6 +546,7 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const [direction, setDirection] = useState(0);
   const [showAll, setShowAll] = useState(false);
+  const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
 
   const changeCategory = useCallback((idx: number) => {
     if (idx === activeIdx) return;
@@ -650,15 +651,20 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                       className={cn(
-                        "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500",
+                        "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
                         project.image
                       )}
+                      onClick={() => {
+                        if (project.imageUrl) {
+                          setLightboxProject(project);
+                        }
+                      }}
                     >
                       {project.imageUrl ? (
                         <img
                           src={project.imageUrl}
                           alt={project.title}
-                          className="h-full w-full object-contain object-center p-2"
+                          className="h-full w-full object-cover object-center"
                         />
                       ) : (
                         <div className="h-full w-full flex items-center justify-center">
@@ -718,7 +724,7 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                     <span className="text-sm font-bold uppercase tracking-wider text-brand-primary group-hover:text-brand-accent transition-colors">
                       View More Projects
                     </span>
-                    <ArrowRight size={16} className="text-brand-secondary group-hover:text-brand-accent group-hover:translate-y-0.5 transition-all duration-300" />
+                    <ArrowDown size={16} className="text-brand-secondary group-hover:text-brand-accent group-hover:translate-y-0.5 transition-all duration-300" />
                   </button>
                 </div>
               )}
@@ -749,6 +755,43 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
       <p className="text-center text-[10px] text-brand-secondary/40 uppercase tracking-[0.2em] font-bold mt-4 md:hidden">
         Swipe to explore
       </p>
+
+      {/* Lightbox Modal */}
+      {lightboxProject && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
+          onClick={() => setLightboxProject(null)}
+        >
+          <div
+            className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightboxProject(null)}
+              className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors"
+              aria-label="Close lightbox"
+            >
+              <X size={24} />
+            </button>
+            {lightboxProject.imageUrl ? (
+              <img
+                src={lightboxProject.imageUrl}
+                alt={lightboxProject.title}
+                className="max-w-full max-h-[75vh] w-full object-contain rounded-2xl"
+              />
+            ) : (
+              <div className="w-full aspect-video rounded-2xl glass flex items-center justify-center">
+                <span className="text-2xl font-display font-bold text-brand-secondary/40">
+                  {lightboxProject.title}
+                </span>
+              </div>
+            )}
+            <h3 className="text-xl md:text-2xl font-bold font-display text-white mt-5 text-center">
+              {lightboxProject.title}
+            </h3>
+          </div>
+        </div>
+      )}
     </Section>
   );
 }
@@ -756,6 +799,7 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
 export function AllProjects() {
   const [activeIdx, setActiveIdx] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [lightboxProject, setLightboxProject] = useState<Project | null>(null);
 
   const changeCategory = useCallback((idx: number) => {
     if (idx === activeIdx) return;
@@ -859,15 +903,20 @@ export function AllProjects() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                       className={cn(
-                        "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500",
+                        "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
                         project.image
                       )}
+                      onClick={() => {
+                        if (project.imageUrl) {
+                          setLightboxProject(project);
+                        }
+                      }}
                     >
                       {project.imageUrl ? (
                         <img
                           src={project.imageUrl}
                           alt={project.title}
-                          className="h-full w-full object-contain object-center p-2"
+                          className="h-full w-full object-cover object-center"
                         />
                       ) : (
                         <div className="h-full w-full flex items-center justify-center">
@@ -945,6 +994,43 @@ export function AllProjects() {
       <p className="text-center text-[10px] text-brand-secondary/40 uppercase tracking-[0.2em] font-bold mt-4 md:hidden">
         Swipe to explore
       </p>
+
+      {/* Lightbox Modal */}
+      {lightboxProject && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
+          onClick={() => setLightboxProject(null)}
+        >
+          <div
+            className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightboxProject(null)}
+              className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors"
+              aria-label="Close lightbox"
+            >
+              <X size={24} />
+            </button>
+            {lightboxProject.imageUrl ? (
+              <img
+                src={lightboxProject.imageUrl}
+                alt={lightboxProject.title}
+                className="max-w-full max-h-[75vh] w-full object-contain rounded-2xl"
+              />
+            ) : (
+              <div className="w-full aspect-video rounded-2xl glass flex items-center justify-center">
+                <span className="text-2xl font-display font-bold text-brand-secondary/40">
+                  {lightboxProject.title}
+                </span>
+              </div>
+            )}
+            <h3 className="text-xl md:text-2xl font-bold font-display text-white mt-5 text-center">
+              {lightboxProject.title}
+            </h3>
+          </div>
+        </div>
+      )}
     </Section>
   );
 }
