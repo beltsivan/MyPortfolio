@@ -6,10 +6,12 @@ import { cn } from '../lib/utils';
 import appointmentImage from '../assets/appointment.png';
 import schoolImage from '../assets/school.png';
 import mcdeliveryImage from '../assets/mcdelivery.jpg';
+import diamondSkinImage from '../assets/DiamondSkin.png';
 
 interface Project {
   title: string;
   category: string;
+  subCategory?: string;
   image: string;
   imageUrl: string;
   description: string;
@@ -26,134 +28,321 @@ interface Category {
 }
 
 const graphicDesignProjects: Project[] = [
+  // ── Beauty ──────────────────────────────────────────────
   {
-    title: 'Social Media Design Suite',
-    category: 'Digital Graphics',
+    title: 'Diamond Skin Care — Brand Identity',
+    subCategory: 'Beauty',
+    category: 'Brand Identity',
     image: 'bg-gradient-to-br from-pink-600/30 to-rose-600/10',
-    imageUrl: '/graphic%20design/image_2025-01-21_205546869.png',
-    description: '',
-    tags: ['Canva', 'Photoshop', 'Illustrator', 'Social Media'],
+    imageUrl: '/graphic%20design/beauty/beauty.PNG',
+    description: 'Complete brand identity suite for Diamond Skin Care including logo, color palette, and brand guidelines.',
+    tags: ['Brand Identity', 'Logo Design', 'Color Palette', 'Typography'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'Print Collateral Package',
+    title: 'Diamond Skin Care — Social Media Kit',
+    subCategory: 'Beauty',
+    category: 'Social Media',
+    image: 'bg-gradient-to-br from-pink-500/30 to-fuchsia-500/10',
+    imageUrl: '/graphic%20design/beauty/DiamondSkinPost.jpg',
+    description: 'Social media post designs for Diamond Skin Care featuring promotional content and brand storytelling.',
+    tags: ['Canva', 'Social Media', 'Content Creation', 'Marketing'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Diamond Skin Care — Promotional Series',
+    subCategory: 'Beauty',
+    category: 'Social Media',
+    image: 'bg-gradient-to-br from-rose-500/30 to-pink-600/10',
+    imageUrl: '/graphic%20design/beauty/DiamondSkinPost1.jpg',
+    description: 'A series of promotional graphics highlighting Diamond Skin Care services and treatment offerings.',
+    tags: ['Social Media', 'Promotional', 'Canva', 'Graphic Design'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Diamond Skin Care — Product Showcase',
+    subCategory: 'Beauty',
+    category: 'Social Media',
+    image: 'bg-gradient-to-br from-fuchsia-500/30 to-purple-600/10',
+    imageUrl: '/graphic%20design/beauty/DiamondSkinPost2.jpg',
+    description: 'Product-focused social media creatives showcasing Diamond Skin Care treatments and services.',
+    tags: ['Product Showcase', 'Social Media', 'Visual Design', 'Canva'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Diamond Skin Care — Story Highlights',
+    subCategory: 'Beauty',
+    category: 'Social Media',
+    image: 'bg-gradient-to-br from-violet-500/30 to-fuchsia-500/10',
+    imageUrl: '/graphic%20design/beauty/DiamondSkinPost3.jpg',
+    description: 'Instagram Story highlight covers and story templates for Diamond Skin Care brand presence.',
+    tags: ['Instagram', 'Stories', 'Branding', 'Social Media'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Diamond Skin Care — Ad Campaign',
+    subCategory: 'Beauty',
+    category: 'Advertising',
+    image: 'bg-gradient-to-br from-pink-500/30 to-orange-500/10',
+    imageUrl: '/graphic%20design/beauty/DiamondSKinPost4.jpg',
+    description: 'Paid ad creatives designed for Diamond Skin Care digital marketing campaigns across platforms.',
+    tags: ['Advertising', 'Digital Marketing', 'Canva', 'Creative Design'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Diamond Skin Care — Banner Designs',
+    subCategory: 'Beauty',
+    category: 'Web Graphics',
+    image: 'bg-gradient-to-br from-rose-500/30 to-violet-600/10',
+    imageUrl: '/graphic%20design/beauty/DiamondSkinPost5.jpg',
+    description: 'Web and social media banner designs for Diamond Skin Care brand awareness campaigns.',
+    tags: ['Banners', 'Web Graphics', 'Social Media', 'Branding'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Beauty Editorial Layouts',
+    subCategory: 'Beauty',
+    category: 'Editorial Design',
+    image: 'bg-gradient-to-br from-purple-600/30 to-pink-500/10',
+    imageUrl: '/graphic%20design/beauty/image_2025-01-21_205631939.png',
+    description: 'Editorial and magazine-style layouts for beauty industry print and digital publications.',
+    tags: ['Editorial', 'Layout Design', 'Typography', 'Print'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Spa & Wellness Graphics',
+    subCategory: 'Beauty',
     category: 'Print Design',
-    image: 'bg-gradient-to-br from-rose-600/30 to-stone-600/10',
-    imageUrl: '/graphic%20design/image_2025-01-21_205532421.png',
-    description: '',
-    tags: ['Illustrator', 'InDesign', 'Print Production', 'Typography'],
+    image: 'bg-gradient-to-br from-pink-600/30 to-stone-500/10',
+    imageUrl: '/graphic%20design/beauty/image_2025-01-21_205646349.png',
+    description: 'Print-ready promotional materials for spa and wellness services including flyers and brochures.',
+    tags: ['Print Design', 'Brochures', 'Flyers', 'Wellness'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'Digital Art & Illustrations',
-    category: 'Digital Art',
-    image: 'bg-gradient-to-br from-violet-600/30 to-fuchsia-600/10',
-    imageUrl: '/graphic%20design/image_2025-01-21_205506282.png',
-    description: '',
-    tags: ['Illustrator', 'Photoshop', 'Vector Art', 'Digital Painting'],
+    title: 'Beauty Service Menu Design',
+    subCategory: 'Beauty',
+    category: 'Print Design',
+    image: 'bg-gradient-to-br from-fuchsia-600/30 to-pink-500/10',
+    imageUrl: '/graphic%20design/beauty/image_2025-01-21_205708555.png',
+    description: 'Elegant service menu and price list designs for beauty and skincare clinics.',
+    tags: ['Menu Design', 'Print', 'Typography', 'Luxury Branding'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
+
+  // ── Church Design ───────────────────────────────────────
   {
-    title: 'Brand Marketing Toolkit',
-    category: 'Marketing Design',
-    image: 'bg-gradient-to-br from-emerald-600/30 to-teal-600/10',
-    imageUrl: '/graphic%20design/image_2025-01-21_205206212.png',
-    description: '',
-    tags: ['Canva', 'Photoshop', 'Email Design', 'Social Media'],
-    liveUrl: '',
-    repoUrl: '',
-    size: 'small',
-  },
-  {
-    title: 'Web Design Mockups',
-    category: 'UI Design',
-    image: 'bg-gradient-to-br from-sky-600/30 to-blue-600/10',
-    imageUrl: '/graphic%20design/image_2025-01-21_205103613.png',
-    description: '',
-    tags: ['Figma', 'Photoshop', 'Wireframing', 'Prototyping'],
-    liveUrl: '',
-    repoUrl: '',
-    size: 'small',
-  },
-  {
-    title: 'Presentation Design',
-    category: 'Corporate Design',
-    image: 'bg-gradient-to-br from-slate-600/30 to-gray-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['PowerPoint', 'Keynote', 'Data Vis', 'Typography'],
-    liveUrl: '',
-    repoUrl: '',
-    size: 'small',
-  },
-  {
-    title: 'Iconography Set',
-    category: 'Icon Design',
+    title: 'Canyon Springs Church — Website Design',
+    subCategory: 'Church Design',
+    category: 'Web Design',
     image: 'bg-gradient-to-br from-amber-600/30 to-yellow-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['Illustrator', 'SVG', 'Icon Design', 'Vector Art'],
+    imageUrl: '/graphic%20design/chruchDesign/CanyonSpringsChurch.com.png',
+    description: 'Full website homepage design for Canyon Springs Church with modern, welcoming aesthetics.',
+    tags: ['Web Design', 'UI/UX', 'Figma', 'Responsive'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'Newsletter Templates',
-    category: 'Email Design',
-    image: 'bg-gradient-to-br from-red-600/30 to-pink-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['HTML Email', 'Canva', 'Mailchimp', 'Responsive'],
+    title: 'Church Event Poster — Series 1',
+    subCategory: 'Church Design',
+    category: 'Print Design',
+    image: 'bg-gradient-to-br from-yellow-600/30 to-orange-600/10',
+    imageUrl: '/graphic%20design/chruchDesign/1.jpg',
+    description: 'Event poster design for church gatherings, conferences, and community outreach programs.',
+    tags: ['Poster Design', 'Print', 'Typography', 'Event'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'E-commerce Graphics',
-    category: 'Product Design',
-    image: 'bg-gradient-to-br from-orange-600/30 to-amber-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['Photoshop', 'Product Photo', 'Banners', 'Ads'],
+    title: 'Church Event Poster — Series 2',
+    subCategory: 'Church Design',
+    category: 'Print Design',
+    image: 'bg-gradient-to-br from-orange-600/30 to-red-600/10',
+    imageUrl: '/graphic%20design/chruchDesign/2.jpg',
+    description: 'Bold and inspiring poster series designed for church events and worship gatherings.',
+    tags: ['Poster Design', 'Print', 'Color Theory', 'Event'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'Event Materials',
-    category: 'Event Design',
-    image: 'bg-gradient-to-br from-purple-600/30 to-violet-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['Illustrator', 'InDesign', 'Posters', 'Banners'],
+    title: 'Church Event Poster — Series 3',
+    subCategory: 'Church Design',
+    category: 'Print Design',
+    image: 'bg-gradient-to-br from-amber-500/30 to-stone-600/10',
+    imageUrl: '/graphic%20design/chruchDesign/3.jpg',
+    description: 'Minimalist poster design for church youth events and community service programs.',
+    tags: ['Poster Design', 'Minimalist', 'Print', 'Community'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'Photo Retouching',
-    category: 'Photo Editing',
-    image: 'bg-gradient-to-br from-zinc-600/30 to-neutral-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['Photoshop', 'Color Grading', 'Retouching', 'Compositing'],
+    title: 'Church Event Poster — Series 4',
+    subCategory: 'Church Design',
+    category: 'Print Design',
+    image: 'bg-gradient-to-br from-yellow-500/30 to-amber-600/10',
+    imageUrl: '/graphic%20design/chruchDesign/4.jpg',
+    description: 'Faith-based event promotional materials designed for both print and digital distribution.',
+    tags: ['Poster Design', 'Faith', 'Print', 'Digital'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+
+  // ── Flower Shopsss ─────────────────────────────────────────
+  {
+    title: 'Flower Shop — Brand Collateral',
+    subCategory: 'Flower Shop',
+    category: 'Brand Identity',
+    image: 'bg-gradient-to-br from-green-600/30 to-emerald-600/10',
+    imageUrl: '/graphic%20design/flowerShop/image_2025-01-21_204444035.png',
+    description: 'Brand collateral and identity system for a boutique flower shop including logo and packaging.',
+    tags: ['Brand Identity', 'Packaging', 'Logo Design', 'Floral'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
   },
   {
-    title: 'Infographic Design',
-    category: 'Data Design',
-    image: 'bg-gradient-to-br from-cyan-600/30 to-sky-600/10',
-    imageUrl: '',
-    description: '',
-    tags: ['Illustrator', 'Data Vis', 'Typography', 'Layout'],
+    title: 'Floral Arrangement Lookbook',
+    subCategory: 'Flower Shop',
+    category: 'Editorial Design',
+    image: 'bg-gradient-to-br from-emerald-500/30 to-teal-600/10',
+    imageUrl: '/graphic%20design/flowerShop/image_2025-01-21_204505814.png',
+    description: 'A beautifully designed lookbook showcasing seasonal floral arrangements and bouquet collections.',
+    tags: ['Lookbook', 'Editorial', 'Floral Design', 'Photography'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Flower Shop — Social Media Posts',
+    subCategory: 'Flower Shop',
+    category: 'Social Media',
+    image: 'bg-gradient-to-br from-teal-500/30 to-green-600/10',
+    imageUrl: '/graphic%20design/flowerShop/image_2025-01-21_204519690.png',
+    description: 'Social media content strategy and post designs for a floral business online presence.',
+    tags: ['Social Media', 'Content Strategy', 'Canva', 'Floral'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Floral Branding Elements',
+    subCategory: 'Flower Shop',
+    category: 'Brand Identity',
+    image: 'bg-gradient-to-br from-green-500/30 to-lime-600/10',
+    imageUrl: '/graphic%20design/flowerShop/image_2025-01-21_204531488.png',
+    description: 'Branding elements and visual assets for a flower shop including patterns and iconography.',
+    tags: ['Brand Elements', 'Patterns', 'Icons', 'Visual Identity'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Floral Promotion Flyers',
+    subCategory: 'Flower Shop',
+    category: 'Print Design',
+    image: 'bg-gradient-to-br from-lime-500/30 to-green-600/10',
+    imageUrl: '/graphic%20design/flowerShop/image_2025-01-21_204616784.png',
+    description: 'Seasonal promotion flyers and discount cards for a flower shop marketing campaigns.',
+    tags: ['Flyers', 'Print', 'Promotional', 'Seasonal'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Flower Shop — Catalog Design',
+    subCategory: 'Flower Shop',
+    category: 'Editorial Design',
+    image: 'bg-gradient-to-br from-emerald-600/30 to-green-500/10',
+    imageUrl: '/graphic%20design/flowerShop/image_2025-01-21_204627726.png',
+    description: 'Product catalog design featuring flower arrangements with pricing and occasion categories.',
+    tags: ['Catalog', 'Editorial', 'Typography', 'Floral'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+
+  // ── Food & Drinks ───────────────────────────────────────
+  {
+    title: 'Food Menu Board Design',
+    subCategory: 'Food & Drinks',
+    category: 'Menu Design',
+    image: 'bg-gradient-to-br from-red-600/30 to-orange-600/10',
+    imageUrl: '/graphic%20design/food&drinks/image_2025-01-21_205103613.png',
+    description: 'Digital and print menu board design for restaurants featuring daily specials and categories.',
+    tags: ['Menu Design', 'Typography', 'Food', 'Print'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Restaurant Brand Marketing',
+    subCategory: 'Food & Drinks',
+    category: 'Marketing Design',
+    image: 'bg-gradient-to-br from-orange-500/30 to-red-600/10',
+    imageUrl: '/graphic%20design/food&drinks/image_2025-01-21_205206212.png',
+    description: 'Marketing collateral suite for a restaurant brand including flyers, banners, and promotional materials.',
+    tags: ['Marketing', 'Branding', 'Flyers', 'Restaurant'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Food Illustration Series',
+    subCategory: 'Food & Drinks',
+    category: 'Digital Art',
+    image: 'bg-gradient-to-br from-amber-500/30 to-yellow-600/10',
+    imageUrl: '/graphic%20design/food&drinks/image_2025-01-21_205506282.png',
+    description: 'Custom food illustrations and vector art for restaurant menus and promotional materials.',
+    tags: ['Illustration', 'Vector Art', 'Food', 'Digital Art'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Beverage Branding Suite',
+    subCategory: 'Food & Drinks',
+    category: 'Brand Identity',
+    image: 'bg-gradient-to-br from-yellow-500/30 to-amber-600/10',
+    imageUrl: '/graphic%20design/food&drinks/image_2025-01-21_205532421.png',
+    description: 'Complete branding suite for a beverage brand including labels, packaging, and marketing assets.',
+    tags: ['Brand Identity', 'Packaging', 'Labels', 'Beverage'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Social Media Food Content',
+    subCategory: 'Food & Drinks',
+    category: 'Social Media',
+    image: 'bg-gradient-to-br from-orange-600/30 to-red-500/10',
+    imageUrl: '/graphic%20design/food&drinks/image_2025-01-21_205546869.png',
+    description: 'Social media post designs for food brands featuring menu highlights and promotional campaigns.',
+    tags: ['Social Media', 'Food Photography', 'Content', 'Marketing'],
     liveUrl: '',
     repoUrl: '',
     size: 'small',
@@ -198,6 +387,17 @@ const categories: Category[] = [
         repoUrl: '',
         size: 'small',
       },
+      {
+        title: 'Diamond Skin Care — Appointment Booking & CMS',
+        category: 'Live Web Application',
+        image: 'bg-rose-600/20',
+        imageUrl: diamondSkinImage,
+        description: 'A modern skincare business website with online appointment booking, user authentication, and a full admin CMS dashboard for managing services, bookings, and content.',
+        tags: ['React.js', 'Tailwind CSS', 'Firebase', 'Firestore', 'Vercel'],
+        liveUrl: 'https://diamond-skin-care.vercel.app/',
+        repoUrl: '',
+        size: 'large',
+      },
     ],
   },
   {
@@ -208,7 +408,7 @@ const categories: Category[] = [
   {
     id: 'branding',
     label: 'Branding',
-    projects: graphicDesignProjects,
+    projects: [],
   },
 ];
 
@@ -542,6 +742,16 @@ function WebLayerStack({ projects }: { projects: Project[] }) {
   );
 }
 
+function groupBySubCategory(projects: Project[]): Map<string, Project[]> {
+  const groups = new Map<string, Project[]>();
+  for (const project of projects) {
+    const key = project.subCategory || 'Other';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(project);
+  }
+  return groups;
+}
+
 export function Projects({ onViewAll }: { onViewAll?: () => void }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -635,100 +845,197 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
           >
             {currentCategory.id === 'web' ? (
               <WebLayerStack projects={currentCategory.projects} />
-            ) : (
+            ) : !showAll ? (
               <div>
                 <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3">
-                  {(showAll ? currentCategory.projects : currentCategory.projects.slice(0, 3)).map((project, idx) => (
-                  <div
-                    key={project.title}
-                    className={cn(
-                      "group relative flex flex-col",
-                      project.size === 'large' ? 'md:col-span-2' : ''
-                    )}
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className={cn(
-                        "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
-                        project.image
-                      )}
-                      onClick={() => {
-                        if (project.imageUrl) {
-                          setLightboxProject(project);
-                        }
-                      }}
+                  {currentCategory.projects.slice(0, 3).map((project, idx) => (
+                    <div
+                      key={project.title}
+                      className="group relative flex flex-col"
                     >
-                      {project.imageUrl ? (
-                        <img
-                          src={project.imageUrl}
-                          alt={project.title}
-                          className="h-full w-full object-cover object-center"
-                        />
-                      ) : (
-                        <div className="h-full w-full flex items-center justify-center">
-                          <div className="text-5xl font-display font-black tracking-tighter opacity-[0.04] select-none pointer-events-none max-w-[80%] text-center leading-tight">
-                            {project.title}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                        className={cn(
+                          "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
+                          project.image
+                        )}
+                        onClick={() => {
+                          if (project.imageUrl) {
+                            setLightboxProject(project);
+                          }
+                        }}
+                      >
+                        {project.imageUrl ? (
+                          <img
+                            src={project.imageUrl}
+                            alt={project.title}
+                            className="h-full w-full object-cover object-center"
+                          />
+                        ) : (
+                          <div className="h-full w-full flex items-center justify-center">
+                            <div className="text-5xl font-display font-black tracking-tighter opacity-[0.04] select-none pointer-events-none max-w-[80%] text-center leading-tight">
+                              {project.title}
+                            </div>
                           </div>
+                        )}
+                        <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {project.repoUrl ? (
+                            <a
+                              href={project.repoUrl}
+                              className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
+                              aria-label={`${project.title} repository`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Github size={16} />
+                            </a>
+                          ) : null}
+                          {project.liveUrl ? (
+                            <a
+                              href={project.liveUrl}
+                              className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
+                              aria-label={`${project.title} live site`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ExternalLink size={16} />
+                            </a>
+                          ) : null}
                         </div>
-                      )}
-                      <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {project.repoUrl ? (
-                          <a
-                            href={project.repoUrl}
-                            className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
-                            aria-label={`${project.title} repository`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github size={16} />
-                          </a>
-                        ) : null}
-                        {project.liveUrl ? (
-                          <a
-                            href={project.liveUrl}
-                            className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
-                            aria-label={`${project.title} live site`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink size={16} />
-                          </a>
-                        ) : null}
-                      </div>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.25 + idx * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex flex-col gap-2"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
-                          {project.category}
-                        </span>
-                        <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
-              </div>
-              {!showAll && currentCategory.projects.length > 3 && (
-                <div className="flex justify-center mt-12">
-                  <button
-                    onClick={() => onViewAll ? onViewAll() : setShowAll(true)}
-                    className="group flex items-center gap-3 px-8 py-3 rounded-full glass border border-white/[0.06] hover:border-brand-accent/30 hover:shadow-lg hover:shadow-brand-accent/10 transition-all duration-300"
-                  >
-                    <span className="text-sm font-bold uppercase tracking-wider text-brand-primary group-hover:text-brand-accent transition-colors">
-                      View More Projects
-                    </span>
-                    <ArrowDown size={16} className="text-brand-secondary group-hover:text-brand-accent group-hover:translate-y-0.5 transition-all duration-300" />
-                  </button>
+                      </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.25 + idx * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex flex-col gap-2"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
+                            {project.category}
+                          </span>
+                          <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
+                        </div>
+                      </motion.div>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+                {currentCategory.projects.length > 3 && (
+                  <div className="flex justify-center mt-10">
+                    <button
+                      onClick={() => onViewAll ? onViewAll() : setShowAll(true)}
+                      className="group flex items-center gap-3 px-8 py-3 rounded-full glass border border-white/[0.06] hover:border-brand-accent/30 hover:shadow-lg hover:shadow-brand-accent/10 transition-all duration-300"
+                    >
+                      <span className="text-sm font-bold uppercase tracking-wider text-brand-primary group-hover:text-brand-accent transition-colors">
+                        View More Projects
+                      </span>
+                      <ArrowRight size={16} className="text-brand-secondary group-hover:text-brand-accent group-hover:translate-y-0.5 transition-all duration-300" />
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div>
+                {(() => {
+                  const groups = groupBySubCategory(currentCategory.projects);
+                  const entries = Array.from(groups.entries());
+                  let globalIdx = 0;
+                  return entries.map(([subCategory, projs]) => (
+                    <div key={subCategory} className="mb-14 last:mb-0">
+                      <motion.div
+                        initial={{ opacity: 0, x: -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        className="flex items-center gap-3 mb-7"
+                      >
+                        <div className="w-10 h-[1px] bg-brand-accent/60" />
+                        <span className="text-base font-black uppercase tracking-[0.1em] text-brand-accent">
+                          {subCategory}
+                        </span>
+                        <div className="h-[1px] flex-1 bg-white/[0.06]" />
+                      </motion.div>
+                      <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3">
+                        {projs.map((project) => {
+                          const idx = globalIdx++;
+                          return (
+                            <div
+                              key={project.title}
+                              className="group relative flex flex-col"
+                            >
+                              <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.15 + idx * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                className={cn(
+                                  "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
+                                  project.image
+                                )}
+                                onClick={() => {
+                                  if (project.imageUrl) {
+                                    setLightboxProject(project);
+                                  }
+                                }}
+                              >
+                                {project.imageUrl ? (
+                                  <img
+                                    src={project.imageUrl}
+                                    alt={project.title}
+                                    className="h-full w-full object-cover object-center"
+                                  />
+                                ) : (
+                                  <div className="h-full w-full flex items-center justify-center">
+                                    <div className="text-5xl font-display font-black tracking-tighter opacity-[0.04] select-none pointer-events-none max-w-[80%] text-center leading-tight">
+                                      {project.title}
+                                    </div>
+                                  </div>
+                                )}
+                                <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                  {project.repoUrl ? (
+                                    <a
+                                      href={project.repoUrl}
+                                      className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
+                                      aria-label={`${project.title} repository`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <Github size={16} />
+                                    </a>
+                                  ) : null}
+                                  {project.liveUrl ? (
+                                    <a
+                                      href={project.liveUrl}
+                                      className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
+                                      aria-label={`${project.title} live site`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <ExternalLink size={16} />
+                                    </a>
+                                  ) : null}
+                                </div>
+                              </motion.div>
+                              <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.25 + idx * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                className="flex flex-col gap-2"
+                              >
+                                <div className="flex items-center justify-between">
+                                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
+                                    {project.category}
+                                  </span>
+                                  <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
+                                </div>
+                              </motion.div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ));
+                })()}
+              </div>
             )}
           </motion.div>
         </AnimatePresence>
@@ -889,85 +1196,108 @@ export function AllProjects() {
               <WebLayerStack projects={currentCategory.projects} />
             ) : (
               <div>
-                <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3">
-                  {currentCategory.projects.map((project, idx) => (
-                  <div
-                    key={project.title}
-                    className={cn(
-                      "group relative flex flex-col",
-                      project.size === 'large' ? 'md:col-span-2' : ''
-                    )}
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className={cn(
-                        "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
-                        project.image
-                      )}
-                      onClick={() => {
-                        if (project.imageUrl) {
-                          setLightboxProject(project);
-                        }
-                      }}
-                    >
-                      {project.imageUrl ? (
-                        <img
-                          src={project.imageUrl}
-                          alt={project.title}
-                          className="h-full w-full object-cover object-center"
-                        />
-                      ) : (
-                        <div className="h-full w-full flex items-center justify-center">
-                          <div className="text-5xl font-display font-black tracking-tighter opacity-[0.04] select-none pointer-events-none max-w-[80%] text-center leading-tight">
-                            {project.title}
-                          </div>
+                {(() => {
+                  const groups = groupBySubCategory(currentCategory.projects);
+                  const entries = Array.from(groups.entries());
+                  let globalIdx = 0;
+                  return entries.map(([subCategory, projs]) => {
+                    const section = (
+                      <div key={subCategory} className="mb-14 last:mb-0">
+                        <motion.div
+                          initial={{ opacity: 0, x: -12 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                          className="flex items-center gap-3 mb-7"
+                        >
+                          <div className="w-10 h-[1px] bg-brand-accent/60" />
+                          <span className="text-base font-black uppercase tracking-[0.1em] text-brand-accent">
+                            {subCategory}
+                          </span>
+                          <div className="h-[1px] flex-1 bg-white/[0.06]" />
+                        </motion.div>
+                        <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3">
+                          {projs.map((project) => {
+                            const idx = globalIdx++;
+                            return (
+                              <div
+                                key={project.title}
+                                className="group relative flex flex-col"
+                              >
+                                <motion.div
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.15 + idx * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                  className={cn(
+                                    "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
+                                    project.image
+                                  )}
+                                  onClick={() => {
+                                    if (project.imageUrl) {
+                                      setLightboxProject(project);
+                                    }
+                                  }}
+                                >
+                                  {project.imageUrl ? (
+                                    <img
+                                      src={project.imageUrl}
+                                      alt={project.title}
+                                      className="h-full w-full object-cover object-center"
+                                    />
+                                  ) : (
+                                    <div className="h-full w-full flex items-center justify-center">
+                                      <div className="text-5xl font-display font-black tracking-tighter opacity-[0.04] select-none pointer-events-none max-w-[80%] text-center leading-tight">
+                                        {project.title}
+                                      </div>
+                                    </div>
+                                  )}
+                                  <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {project.repoUrl ? (
+                                      <a
+                                        href={project.repoUrl}
+                                        className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
+                                        aria-label={`${project.title} repository`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <Github size={16} />
+                                      </a>
+                                    ) : null}
+                                    {project.liveUrl ? (
+                                      <a
+                                        href={project.liveUrl}
+                                        className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
+                                        aria-label={`${project.title} live site`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <ExternalLink size={16} />
+                                      </a>
+                                    ) : null}
+                                  </div>
+                                </motion.div>
+                                <motion.div
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.25 + idx * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                  className="flex flex-col gap-2"
+                                >
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
+                                      {project.category}
+                                    </span>
+                                    <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
+                                  </div>
+                                </motion.div>
+                              </div>
+                            );
+                          })}
                         </div>
-                      )}
-                      <div className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {project.repoUrl ? (
-                          <a
-                            href={project.repoUrl}
-                            className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
-                            aria-label={`${project.title} repository`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github size={16} />
-                          </a>
-                        ) : null}
-                        {project.liveUrl ? (
-                          <a
-                            href={project.liveUrl}
-                            className="p-2.5 glass rounded-full hover:bg-brand-primary hover:text-black transition-colors"
-                            aria-label={`${project.title} live site`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink size={16} />
-                          </a>
-                        ) : null}
                       </div>
-                    </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.25 + idx * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex flex-col gap-2"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
-                          {project.category}
-                        </span>
-                        <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
-                      </div>
-                    </motion.div>
-                  </div>
-                ))}
+                    );
+                    return section;
+                  });
+                })()}
               </div>
-            </div>
             )}
           </motion.div>
         </AnimatePresence>
