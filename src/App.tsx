@@ -8,6 +8,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Projects, AllProjects } from './components/Projects';
 import { Contact, Footer } from './components/Contact';
+import { ChatBot } from './components/ChatBot';
 import { useEffect, useState, useCallback } from 'react';
 
 type Theme = 'dark' | 'light';
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <main className="min-h-screen bg-background relative overflow-x-hidden transition-colors duration-300">
       <Navbar theme={theme} onToggleTheme={toggleTheme} onNavigate={navigate} currentPage={page} />
+      <ChatBot />
       {page === 'home' ? (
         <>
           <Hero />

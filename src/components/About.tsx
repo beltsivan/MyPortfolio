@@ -14,7 +14,7 @@ export function About() {
     'JavaScript',
     'Responsive Design',
     'UI/UX Design',
-    'Branding',
+    'T-Shirt Design',
     'Visual Identity',
     'MySQL',
     'CMS Management',
@@ -57,7 +57,7 @@ export function About() {
 
         <p className="text-lg text-brand-secondary leading-relaxed">
           I am 22 years old and currently a college student. My work focuses on clean, user-centered interfaces, 
-          responsive web design, branding, visual identity, logo design, presentation design, and marketing materials. 
+          responsive web design, t-shirt design, visual identity, logo design, presentation design, and marketing materials. 
           I also create and edit static visual content for businesses and have experience with basic backend connectivity through database integration.
         </p>
 

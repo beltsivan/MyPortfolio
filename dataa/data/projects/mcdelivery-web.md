@@ -8,7 +8,7 @@ tech:
   - HTML/CSS
   - JavaScript
 image: ""
-liveUrl: ""
+liveUrl: "https://drive.google.com/file/d/1CpOY1L24ArxARm-HoZXaPt5Aas-7sDpj/view?usp=sharing"
 repoUrl: ""
 status: "In Development"
 ---

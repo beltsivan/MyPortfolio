@@ -24,11 +24,11 @@ export function Contact() {
             </p>
 
             <div className="flex flex-col gap-4 mt-8">
-               <a href="mailto:ivanmathewbeltran@email.com" className="flex items-center gap-4 text-2xl font-display font-bold group">
+               <a href="mailto:ivanmathewbeltran@gmail.com" className="flex items-center gap-4 text-2xl font-display font-bold group">
                   <span className="w-12 h-12 glass rounded-full flex items-center justify-center group-hover:bg-brand-primary group-hover:text-black transition-all">
                     <Mail size={20} />
                   </span>
-                  ivanmathewbeltran@email.com
+                  ivanmathewbeltran@gmail.com
                   <ArrowUpRight className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-brand-accent" />
                </a>
             </div>
@@ -52,6 +52,7 @@ export function Contact() {
              <motion.button
                whileHover={{ scale: 1.02 }}
                whileTap={{ scale: 0.98 }}
+               onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
                className="w-full py-6 bg-brand-accent/10 rounded-2xl text-xl font-display font-black uppercase tracking-widest border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-all duration-300"
              >
                 Start a conversation

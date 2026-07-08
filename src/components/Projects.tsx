@@ -7,6 +7,7 @@ import appointmentImage from '../assets/appointment.png';
 import schoolImage from '../assets/school.png';
 import mcdeliveryImage from '../assets/mcdelivery.jpg';
 import diamondSkinImage from '../assets/DiamondSkin.png';
+import { SlideViewer } from './SlideViewer';
 
 interface Project {
   title: string;
@@ -14,6 +15,7 @@ interface Project {
   subCategory?: string;
   image: string;
   imageUrl: string;
+  slides?: string[];
   description: string;
   tags: string[];
   liveUrl: string;
@@ -349,6 +351,210 @@ const graphicDesignProjects: Project[] = [
   },
 ];
 
+const makeSlides = (name: string, count: number) =>
+  Array.from(
+    { length: count },
+    (_, i) => `/presentationDeckDesign/${encodeURIComponent(name)}/${encodeURIComponent(name)}-${String(i + 1).padStart(2, '0')}.png`
+  );
+
+const presentationDeckProjects: Project[] = [
+  {
+    title: 'Flexibility and Adaptability',
+    category: 'Presentation Deck',
+    image: 'bg-gradient-to-br from-emerald-600/30 to-teal-600/10',
+    imageUrl: '/presentationDeckDesign/Flexibility%20and%20Adaptability/Flexibility%20and%20Adaptability-01.png',
+    slides: makeSlides('Flexibility and Adaptability', 17),
+    description: 'A presentation deck exploring the value of flexibility and adaptability in modern business environments and leadership.',
+    tags: ['Presentation', 'Adaptability', 'Business Strategy'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'large',
+  },
+  {
+    title: 'Operations Management',
+    category: 'Presentation Deck',
+    image: 'bg-gradient-to-br from-blue-600/30 to-cyan-600/10',
+    imageUrl: '/presentationDeckDesign/Operations%20Management/Operations%20Management-01.png',
+    slides: makeSlides('Operations Management', 16),
+    description: 'A presentation deck covering key operations management principles, process optimization, and operational efficiency strategies.',
+    tags: ['Presentation', 'Operations', 'Process Optimization'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'large',
+  },
+  {
+    title: 'Business Development Management',
+    category: 'Presentation Deck',
+    image: 'bg-gradient-to-br from-amber-600/30 to-yellow-600/10',
+    imageUrl: '/presentationDeckDesign/Business%20Development%20Management/Business%20Development%20Management-01.png',
+    slides: makeSlides('Business Development Management', 24),
+    description: 'A presentation deck on business development strategies, market growth, and strategic partnership building.',
+    tags: ['Presentation', 'Business Development', 'Strategy'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'large',
+  },
+  {
+    title: 'Conflict Management',
+    category: 'Presentation Deck',
+    image: 'bg-gradient-to-br from-red-600/30 to-rose-600/10',
+    imageUrl: '/presentationDeckDesign/Conflict%20Management/Conflict%20Management-01.png',
+    slides: makeSlides('Conflict Management', 22),
+    description: 'A presentation deck exploring conflict resolution techniques, communication strategies, and workplace harmony.',
+    tags: ['Presentation', 'Conflict Resolution', 'Communication'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'large',
+  },
+  {
+    title: 'Cultural Awareness',
+    category: 'Presentation Deck',
+    image: 'bg-gradient-to-br from-violet-600/30 to-purple-600/10',
+    imageUrl: '/presentationDeckDesign/Cultural%20Awareness/Cultural%20Awareness-01.png',
+    slides: makeSlides('Cultural Awareness', 18),
+    description: 'A presentation deck on cultural awareness, diversity, inclusion, and cross-cultural communication in the workplace.',
+    tags: ['Presentation', 'Cultural Awareness', 'Diversity', 'Inclusion'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'large',
+  },
+  {
+    title: 'Empathy in the Workplace',
+    category: 'Presentation Deck',
+    image: 'bg-gradient-to-br from-pink-600/30 to-fuchsia-600/10',
+    imageUrl: '/presentationDeckDesign/Empathy%20in%20the%20Workplace/Empathy%20in%20the%20Workplace-01.png',
+    slides: makeSlides('Empathy in the Workplace', 20),
+    description: 'A presentation deck exploring the role of empathy in leadership, team dynamics, and organizational culture.',
+    tags: ['Presentation', 'Empathy', 'Leadership', 'Workplace Culture'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'large',
+  },
+];
+
+const tshirtDesignProjects: Project[] = [
+  {
+    title: 'MM T-Shirt Design',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-blue-600/30 to-cyan-600/10',
+    imageUrl: '/tShirt/MM%20v2.png',
+    description: 'Bold typographical t-shirt design featuring MM branding with modern aesthetic.',
+    tags: ['T-Shirt', 'Typography', 'Streetwear', 'Design'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'Ancient T-Shirt Design',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-amber-600/30 to-yellow-600/10',
+    imageUrl: '/tShirt/Ancient%20v2.png',
+    description: 'Ancient-inspired t-shirt design with vintage aesthetic and cultural motifs.',
+    tags: ['T-Shirt', 'Vintage', 'Ancient', 'Illustration'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'David T-Shirt Design',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-rose-600/30 to-pink-600/10',
+    imageUrl: '/tShirt/David.png',
+    description: 'Art-inspired t-shirt design featuring David motif with contemporary styling.',
+    tags: ['T-Shirt', 'Art', 'Illustration', 'Classic'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 06',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-emerald-600/30 to-teal-600/10',
+    imageUrl: '/tShirt/6.png',
+    description: 'Minimalist t-shirt design with clean lines and modern typography.',
+    tags: ['T-Shirt', 'Minimalist', 'Typography', 'Modern'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 08',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-violet-600/30 to-purple-600/10',
+    imageUrl: '/tShirt/8.png',
+    description: 'Abstract graphic t-shirt design with bold color blocking.',
+    tags: ['T-Shirt', 'Abstract', 'Graphic', 'Color'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 09',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-orange-600/30 to-red-600/10',
+    imageUrl: '/tShirt/9.png',
+    description: 'Streetwear-inspired t-shirt design with edgy graphic elements.',
+    tags: ['T-Shirt', 'Streetwear', 'Graphic', 'Edgy'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 10',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-sky-600/30 to-indigo-600/10',
+    imageUrl: '/tShirt/10.png',
+    description: 'Contemporary t-shirt design with geometric patterns and shapes.',
+    tags: ['T-Shirt', 'Geometric', 'Contemporary', 'Pattern'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 13',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-lime-600/30 to-green-600/10',
+    imageUrl: '/tShirt/13.png',
+    description: 'Nature-inspired t-shirt design with organic motifs and earthy tones.',
+    tags: ['T-Shirt', 'Nature', 'Organic', 'Illustration'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 14',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-fuchsia-600/30 to-pink-600/10',
+    imageUrl: '/tShirt/14.png',
+    description: 'Pop-art inspired t-shirt design with vibrant colors and bold graphics.',
+    tags: ['T-Shirt', 'Pop-Art', 'Vibrant', 'Graphic'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+  {
+    title: 'T-Shirt Design 15',
+    subCategory: 'T-Shirt',
+    category: 'T-Shirt Design',
+    image: 'bg-gradient-to-br from-cyan-600/30 to-blue-600/10',
+    imageUrl: '/tShirt/15.png',
+    description: 'Modern typographic t-shirt design with custom lettering and layout.',
+    tags: ['T-Shirt', 'Typography', 'Lettering', 'Modern'],
+    liveUrl: '',
+    repoUrl: '',
+    size: 'small',
+  },
+];
+
 const categories: Category[] = [
   {
     id: 'web',
@@ -367,7 +573,7 @@ const categories: Category[] = [
       },
       {
         title: 'School Management System',
-        category: 'In Development',
+        category: 'Under Development',
         image: 'bg-purple-600/20',
         imageUrl: schoolImage,
         description: 'A school administration system for managing enrollment, class scheduling, grades, report cards, teacher assignments, and role-based access for administrators, teachers, and students.',
@@ -378,12 +584,12 @@ const categories: Category[] = [
       },
       {
         title: 'McDelivery PH - Website Clone',
-        category: 'In Development',
+        category: 'Live Demo',
         image: 'bg-emerald-600/20',
         imageUrl: mcdeliveryImage,
         description: 'A full-stack McDelivery Philippines website clone with user authentication, menu categories, cart management, order placement, and an admin dashboard for order tracking.',
         tags: ['PHP', 'phpMyAdmin', 'MySQL', 'HTML/CSS', 'JavaScript'],
-        liveUrl: '',
+        liveUrl: 'https://drive.google.com/file/d/1CpOY1L24ArxARm-HoZXaPt5Aas-7sDpj/view?usp=sharing',
         repoUrl: '',
         size: 'small',
       },
@@ -406,9 +612,14 @@ const categories: Category[] = [
     projects: graphicDesignProjects,
   },
   {
-    id: 'branding',
-    label: 'Branding',
-    projects: [],
+    id: 'tshirt',
+    label: 'T-Shirt Design',
+    projects: tshirtDesignProjects,
+  },
+  {
+    id: 'presentation',
+    label: 'Presentation Deck Design',
+    projects: presentationDeckProjects,
   },
 ];
 
@@ -703,7 +914,13 @@ function WebLayerStack({ projects }: { projects: Project[] }) {
       </div>
 
       {/* Lightbox Modal */}
-      {lightboxProject && (
+      {lightboxProject?.slides ? (
+        <SlideViewer
+          slides={lightboxProject.slides}
+          title={lightboxProject.title}
+          onClose={() => setLightboxProject(null)}
+        />
+      ) : lightboxProject && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
           onClick={() => setLightboxProject(null)}
@@ -862,12 +1079,18 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                           project.image
                         )}
                         onClick={() => {
-                          if (project.imageUrl) {
+                          if (project.slides || project.imageUrl) {
                             setLightboxProject(project);
                           }
                         }}
                       >
-                        {project.imageUrl ? (
+                        {project.slides ? (
+                          <img
+                            src={project.slides[0]}
+                            alt={project.title}
+                            className="h-full w-full object-cover object-center"
+                          />
+                        ) : project.imageUrl ? (
                           <img
                             src={project.imageUrl}
                             alt={project.title}
@@ -972,12 +1195,18 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                                   project.image
                                 )}
                                 onClick={() => {
-                                  if (project.imageUrl) {
+                                  if (project.slides || project.imageUrl) {
                                     setLightboxProject(project);
                                   }
                                 }}
                               >
-                                {project.imageUrl ? (
+                                {project.slides ? (
+                                  <img
+                                    src={project.slides[0]}
+                                    alt={project.title}
+                                    className="h-full w-full object-cover object-center"
+                                  />
+                                ) : project.imageUrl ? (
                                   <img
                                     src={project.imageUrl}
                                     alt={project.title}
@@ -1064,7 +1293,13 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
       </p>
 
       {/* Lightbox Modal */}
-      {lightboxProject && (
+      {lightboxProject?.slides ? (
+        <SlideViewer
+          slides={lightboxProject.slides}
+          title={lightboxProject.title}
+          onClose={() => setLightboxProject(null)}
+        />
+      ) : lightboxProject && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
           onClick={() => setLightboxProject(null)}
@@ -1232,12 +1467,18 @@ export function AllProjects() {
                                     project.image
                                   )}
                                   onClick={() => {
-                                    if (project.imageUrl) {
+                                    if (project.slides || project.imageUrl) {
                                       setLightboxProject(project);
                                     }
                                   }}
                                 >
-                                  {project.imageUrl ? (
+                                  {project.slides ? (
+                                    <img
+                                      src={project.slides[0]}
+                                      alt={project.title}
+                                      className="h-full w-full object-cover object-center"
+                                    />
+                                  ) : project.imageUrl ? (
                                     <img
                                       src={project.imageUrl}
                                       alt={project.title}
@@ -1326,7 +1567,13 @@ export function AllProjects() {
       </p>
 
       {/* Lightbox Modal */}
-      {lightboxProject && (
+      {lightboxProject?.slides ? (
+        <SlideViewer
+          slides={lightboxProject.slides}
+          title={lightboxProject.title}
+          onClose={() => setLightboxProject(null)}
+        />
+      ) : lightboxProject && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
           onClick={() => setLightboxProject(null)}
