@@ -5,7 +5,7 @@ import { ExternalLink, Github, ArrowDown, ChevronLeft, ChevronRight, X, ArrowRig
 import { cn } from '../lib/utils';
 import appointmentImage from '../assets/appointment.png';
 import schoolImage from '../assets/school.png';
-import mcdeliveryImage from '../assets/mcdelivery.jpg';
+import mcdeliveryImage from '../assets/mcdelivery.png';
 import diamondSkinImage from '../assets/DiamondSkin.png';
 import { SlideViewer } from './SlideViewer';
 
