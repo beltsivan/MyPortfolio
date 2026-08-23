@@ -1,5 +1,4 @@
 import { Section } from './Section';
-import { motion } from 'motion/react';
 import { Mail, ArrowUpRight, Github, Linkedin } from 'lucide-react';
 
 export function Contact() {
@@ -47,17 +46,9 @@ export function Contact() {
                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-brand-secondary opacity-50">Focus</span>
                    <p className="text-sm font-mono tracking-wider">Design + Web Development</p>
                 </div>
-             </div>
+              </div>
 
-             <motion.button
-               whileHover={{ scale: 1.02 }}
-               whileTap={{ scale: 0.98 }}
-               onClick={() => window.dispatchEvent(new CustomEvent('open-chat'))}
-               className="w-full py-6 bg-brand-accent/10 rounded-2xl text-xl font-display font-black uppercase tracking-widest border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-all duration-300"
-             >
-                Start a conversation
-             </motion.button>
-          </div>
+           </div>
         </div>
       </div>
     </Section>
