@@ -53,7 +53,7 @@ export function Hero() {
               transition={{ delay: 1, duration: 0.8 }}
               className="max-w-3xl text-lg text-brand-secondary leading-relaxed"
             >
-              I create compelling visual identities, engaging graphic designs, and modern web solutions that balance creativity, functionality, and performance. 
+              I am Ivan Matew M. Beltran living in Tayud, Liloan, Cebu, Philippines. I create compelling visual identities, engaging graphic designs, and modern web solutions that balance creativity, functionality, and performance. 
               I embrace AI to enhance efficiency and accelerate innovation while maintaining a thoughtful, human-centered approach to every project.
             </motion.p>
 

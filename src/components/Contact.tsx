@@ -1,7 +1,18 @@
+import { useState } from 'react';
 import { Section } from './Section';
-import { Mail, ArrowUpRight, Github, Linkedin } from 'lucide-react';
+import { Mail, ArrowUpRight, Github, Linkedin, Copy, Check } from 'lucide-react';
 
 export function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText('ivanmathewbeltran@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <Section id="contact" className="pb-40">
       <div className="glass rounded-[3rem] p-12 md:p-24 overflow-hidden relative">
@@ -22,12 +33,27 @@ export function Contact() {
                I can help turn ideas into clean, functional digital experiences.
             </p>
 
-            <div className="flex flex-col gap-4 mt-8">
-               <a href="mailto:ivanmathewbeltran@gmail.com" className="flex items-center gap-4 text-2xl font-display font-bold group">
-                  <span className="w-12 h-12 glass rounded-full flex items-center justify-center group-hover:bg-brand-primary group-hover:text-black transition-all">
+            <div className="flex flex-wrap items-center gap-4 mt-8">
+               <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ivanmathewbeltran@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4 text-xl sm:text-2xl font-display font-bold group">
+                <button
+                 onClick={handleCopy}
+                 className="flex items-center justify-center w-10 h-10 glass rounded-full text-brand-secondary hover:text-brand-primary hover:bg-brand-primary/5 transition-all duration-300 relative group cursor-pointer"
+                 aria-label="Copy email address"
+                 title="Copy email to clipboard"
+                >
+                 <span>
                     <Mail size={20} />
                   </span>
-                  ivanmathewbeltran@gmail.com
+                 
+                 {/* Premium micro-tooltip */}
+                 <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2.5 py-1 bg-zinc-900 border border-white/[0.08] text-[10px] text-white rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg">
+                   {copied ? 'Copied!' : 'Copy Email'}
+                 </span>
+               </button>
+                  <span>ivanmathewbeltran@gmail.com</span>
                   <ArrowUpRight className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-brand-accent" />
                </a>
             </div>

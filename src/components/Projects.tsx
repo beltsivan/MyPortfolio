@@ -1,13 +1,220 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo, memo } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'motion/react';
 import { Section } from './Section';
-import { ExternalLink, Github, ArrowDown, ChevronLeft, ChevronRight, X, ArrowRight } from 'lucide-react';
+import { ExternalLink, Github, ArrowDown, ChevronLeft, ChevronRight, X, ArrowRight, Award } from 'lucide-react';
 import { cn } from '../lib/utils';
 import appointmentImage from '../assets/appointment.png';
 import schoolImage from '../assets/school.png';
 import mcdeliveryImage from '../assets/mcdelivery.jpg';
 import diamondSkinImage from '../assets/DiamondSkin.png';
 import { SlideViewer } from './SlideViewer';
+
+// ─── Certificate Data ────────────────────────────────────────────────────────
+interface Certificate {
+  title: string;
+  issuer: string;
+  gradient: string;
+  accentColor: string;
+  imageUrl?: string;  // JPG to display directly
+  year?: string;
+}
+
+const certificates: Certificate[] = [
+  {
+    title: 'ISC² Certified in Cybersecurity — Module 1',
+    issuer: 'ISC²',
+    gradient: 'from-blue-600/40 via-cyan-700/20 to-blue-900/30',
+    accentColor: '#3b82f6',
+    imageUrl: '/certificates/CertificateISC2D1.jpg',
+    year: '2025',
+  },
+  {
+    title: 'ISC² Certified in Cybersecurity — Module 2',
+    issuer: 'ISC²',
+    gradient: 'from-blue-500/40 via-indigo-700/20 to-blue-900/30',
+    accentColor: '#6366f1',
+    imageUrl: '/certificates/CertificateISC2D2.jpg',
+    year: '2025',
+  },
+  {
+    title: 'ISC² Certified in Cybersecurity — Module 3',
+    issuer: 'ISC²',
+    gradient: 'from-indigo-600/40 via-blue-700/20 to-indigo-900/30',
+    accentColor: '#818cf8',
+    imageUrl: '/certificates/CertificateISC2D3.jpg',
+    year: '2025',
+  },
+  {
+    title: 'ISC² Certified in Cybersecurity — Module 4',
+    issuer: 'ISC²',
+    gradient: 'from-violet-600/40 via-indigo-700/20 to-violet-900/30',
+    accentColor: '#a78bfa',
+    imageUrl: '/certificates/CertificateISC2D4.jpg',
+    year: '2025',
+  },
+  {
+    title: 'IBM Design Thinking Practitioner',
+    issuer: 'IBM',
+    gradient: 'from-cyan-600/40 via-sky-700/20 to-cyan-900/30',
+    accentColor: '#06b6d4',
+    // No JPG available — shows gradient fallback
+    year: '2025',
+  },
+  {
+    title: 'Entrepreneurship & Startup Certificate',
+    issuer: 'Wadhwani Foundation',
+    gradient: 'from-amber-600/40 via-orange-700/20 to-amber-900/30',
+    accentColor: '#f59e0b',
+    imageUrl: '/certificates/WadhwaniFoundation.jpg',
+    year: '2025',
+  },
+];
+
+function CertificatesGrid() {
+  const [lightboxCert, setLightboxCert] = useState<Certificate | null>(null);
+
+  return (
+    <>
+      <div className="grid gap-8 lg:gap-10 grid-cols-1 md:grid-cols-3">
+        {certificates.map((cert, idx) => (
+          <motion.div
+            key={cert.title}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.12 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative flex flex-col cursor-pointer"
+            onClick={() => setLightboxCert(cert)}
+            aria-label={`View ${cert.title}`}
+          >
+            {/* Card visual */}
+            <div
+              className={cn(
+                "relative rounded-3xl overflow-hidden glass aspect-video mb-5 transition-all duration-500",
+                !cert.imageUrl && `bg-gradient-to-br ${cert.gradient}`
+              )}
+            >
+              {cert.imageUrl ? (
+                // ── Actual certificate image ──
+                <img
+                  src={cert.imageUrl}
+                  alt={cert.title}
+                  className="h-full w-full object-cover object-top"
+                />
+              ) : (
+                // ── Gradient fallback (no image available) ──
+                <>
+                  <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/[0.04]" />
+                  <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/[0.03]" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+                    <div
+                      className="w-16 h-16 rounded-full flex items-center justify-center ring-1 ring-white/10 backdrop-blur-sm"
+                      style={{ background: `${cert.accentColor}22` }}
+                    >
+                      <Award size={28} style={{ color: cert.accentColor }} />
+                    </div>
+                    <div className="text-center px-4">
+                      <p
+                        className="text-[11px] font-black uppercase tracking-[0.18em] mb-1"
+                        style={{ color: cert.accentColor }}
+                      >
+                        {cert.issuer}
+                      </p>
+                      <p className="text-xs text-white/50 font-medium leading-snug max-w-[160px] mx-auto">
+                        {cert.title}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 px-5 py-2.5 glass rounded-full">
+                  <Award size={14} className="text-white" />
+                  <span className="text-xs font-bold text-white uppercase tracking-wider">View Certificate</span>
+                </div>
+              </div>
+
+              {/* Year badge */}
+              {cert.year && (
+                <div className="absolute top-3 left-3">
+                  <span className="px-2.5 py-1 glass rounded-full text-[9px] font-bold uppercase tracking-widest text-white/60">
+                    {cert.year}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Info below card */}
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-1">
+                <span
+                  className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: cert.accentColor }}
+                >
+                  {cert.issuer}
+                </span>
+                <p className="text-sm font-bold font-display leading-tight text-brand-primary line-clamp-2">
+                  {cert.title}
+                </p>
+              </div>
+              <span className="text-[10px] font-mono text-brand-secondary shrink-0 ml-3">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Certificate Lightbox */}
+      {lightboxCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4"
+          onClick={() => setLightboxCert(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setLightboxCert(null)}
+              className="absolute -top-12 right-0 p-2 text-white/60 hover:text-white transition-colors"
+              aria-label="Close"
+            >
+              <X size={24} />
+            </button>
+            {lightboxCert.imageUrl ? (
+              <img
+                src={lightboxCert.imageUrl}
+                alt={lightboxCert.title}
+                className="max-w-full max-h-[78vh] w-full object-contain rounded-2xl shadow-2xl"
+              />
+            ) : (
+              <div className={cn(
+                "w-full aspect-video rounded-2xl flex items-center justify-center bg-gradient-to-br",
+                lightboxCert.gradient
+              )}>
+                <div className="text-center">
+                  <Award size={48} style={{ color: lightboxCert.accentColor }} className="mx-auto mb-3" />
+                  <p className="text-white/70 text-sm">No image available for this certificate.</p>
+                </div>
+              </div>
+            )}
+            <h3 className="text-lg md:text-2xl font-bold font-display text-white mt-5 text-center">
+              {lightboxCert.title}
+            </h3>
+            <p
+              className="text-sm font-bold uppercase tracking-widest mt-1"
+              style={{ color: lightboxCert.accentColor }}
+            >
+              {lightboxCert.issuer}
+            </p>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
 interface Project {
   title: string;
@@ -621,24 +828,18 @@ const categories: Category[] = [
     label: 'Presentation Deck Design',
     projects: presentationDeckProjects,
   },
+  {
+    id: 'certificates',
+    label: 'Certificates',
+    projects: [], // handled by CertificatesGrid
+  },
 ];
 
+// Opacity-only transition: avoids expensive scale repaint and layout shift
 const slideVariants = {
-  enter: (dir: number) => ({
-    x: dir > 0 ? 320 : -320,
-    opacity: 0,
-    scale: 0.97,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-  },
-  exit: (dir: number) => ({
-    x: dir > 0 ? -320 : 320,
-    opacity: 0,
-    scale: 0.97,
-  }),
+  enter: (_dir: number) => ({ opacity: 0 }),
+  center: { opacity: 1 },
+  exit: (_dir: number) => ({ opacity: 0 }),
 };
 
 const springStiffness = 400;
@@ -998,6 +1199,10 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
 
   const currentCategory = categories[activeIdx];
 
+  const groupedProjects = useMemo(() => {
+    return groupBySubCategory(currentCategory.projects);
+  }, [currentCategory.projects]);
+
   return (
     <Section id="projects">
       <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
@@ -1046,7 +1251,7 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
         onPanEnd={handlePanEnd}
         style={{ touchAction: 'pan-y pinch-zoom' }}
       >
-        <AnimatePresence mode="popLayout" custom={direction}>
+        <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={activeIdx}
             custom={direction}
@@ -1055,12 +1260,12 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: 'spring', stiffness: 350, damping: 30, mass: 0.9 },
-              opacity: { duration: 0.3 },
-              scale: { duration: 0.3 },
+              opacity: { duration: 0.25, ease: 'easeInOut' }
             }}
           >
-            {currentCategory.id === 'web' ? (
+            {currentCategory.id === 'certificates' ? (
+              <CertificatesGrid />
+            ) : currentCategory.id === 'web' ? (
               <WebLayerStack projects={currentCategory.projects} />
             ) : !showAll ? (
               <div>
@@ -1070,12 +1275,9 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                       key={project.title}
                       className="group relative flex flex-col"
                     >
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15 + idx * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      <div
                         className={cn(
-                          "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
+                          "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-brand-accent/5",
                           project.image
                         )}
                         onClick={() => {
@@ -1089,12 +1291,16 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                             src={project.slides[0]}
                             alt={project.title}
                             className="h-full w-full object-cover object-center"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : project.imageUrl ? (
                           <img
                             src={project.imageUrl}
                             alt={project.title}
                             className="h-full w-full object-cover object-center"
+                            loading="lazy"
+                            decoding="async"
                           />
                         ) : (
                           <div className="h-full w-full flex items-center justify-center">
@@ -1127,20 +1333,15 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                             </a>
                           ) : null}
                         </div>
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.25 + idx * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex flex-col gap-2"
-                      >
+                      </div>
+                      <div className="flex flex-col gap-2">
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
                             {project.category}
                           </span>
                           <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
                         </div>
-                      </motion.div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1161,23 +1362,17 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
             ) : (
               <div>
                 {(() => {
-                  const groups = groupBySubCategory(currentCategory.projects);
-                  const entries = Array.from(groups.entries());
+                  const entries = Array.from(groupedProjects.entries());
                   let globalIdx = 0;
                   return entries.map(([subCategory, projs]) => (
                     <div key={subCategory} className="mb-14 last:mb-0">
-                      <motion.div
-                        initial={{ opacity: 0, x: -12 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="flex items-center gap-3 mb-7"
-                      >
+                      <div className="flex items-center gap-3 mb-7">
                         <div className="w-10 h-[1px] bg-brand-accent/60" />
                         <span className="text-base font-black uppercase tracking-[0.1em] text-brand-accent">
                           {subCategory}
                         </span>
                         <div className="h-[1px] flex-1 bg-white/[0.06]" />
-                      </motion.div>
+                      </div>
                       <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3">
                         {projs.map((project) => {
                           const idx = globalIdx++;
@@ -1186,12 +1381,9 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                               key={project.title}
                               className="group relative flex flex-col"
                             >
-                              <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.15 + idx * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                              <div
                                 className={cn(
-                                  "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
+                                  "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-brand-accent/5",
                                   project.image
                                 )}
                                 onClick={() => {
@@ -1205,12 +1397,16 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                                     src={project.slides[0]}
                                     alt={project.title}
                                     className="h-full w-full object-cover object-center"
+                                    loading="lazy"
+                                    decoding="async"
                                   />
                                 ) : project.imageUrl ? (
                                   <img
                                     src={project.imageUrl}
                                     alt={project.title}
                                     className="h-full w-full object-cover object-center"
+                                    loading="lazy"
+                                    decoding="async"
                                   />
                                 ) : (
                                   <div className="h-full w-full flex items-center justify-center">
@@ -1243,20 +1439,15 @@ export function Projects({ onViewAll }: { onViewAll?: () => void }) {
                                     </a>
                                   ) : null}
                                 </div>
-                              </motion.div>
-                              <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.25 + idx * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                                className="flex flex-col gap-2"
-                              >
+                              </div>
+                              <div className="flex flex-col gap-2">
                                 <div className="flex items-center justify-between">
                                   <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
                                     {project.category}
                                   </span>
                                   <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
                                 </div>
-                              </motion.div>
+                              </div>
                             </div>
                           );
                         })}
@@ -1365,6 +1556,10 @@ export function AllProjects() {
 
   const currentCategory = categories[activeIdx];
 
+  const groupedProjects = useMemo(() => {
+    return groupBySubCategory(currentCategory.projects);
+  }, [currentCategory.projects]);
+
   return (
     <Section id="projects" className="min-h-screen">
       <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
@@ -1413,7 +1608,7 @@ export function AllProjects() {
         onPanEnd={handlePanEnd}
         style={{ touchAction: 'pan-y pinch-zoom' }}
       >
-        <AnimatePresence mode="popLayout" custom={direction}>
+        <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={activeIdx}
             custom={direction}
@@ -1422,34 +1617,28 @@ export function AllProjects() {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: 'spring', stiffness: 350, damping: 30, mass: 0.9 },
-              opacity: { duration: 0.3 },
-              scale: { duration: 0.3 },
+              opacity: { duration: 0.25, ease: 'easeInOut' }
             }}
           >
-            {currentCategory.id === 'web' ? (
+            {currentCategory.id === 'certificates' ? (
+              <CertificatesGrid />
+            ) : currentCategory.id === 'web' ? (
               <WebLayerStack projects={currentCategory.projects} />
             ) : (
               <div>
                 {(() => {
-                  const groups = groupBySubCategory(currentCategory.projects);
-                  const entries = Array.from(groups.entries());
+                  const entries = Array.from(groupedProjects.entries());
                   let globalIdx = 0;
                   return entries.map(([subCategory, projs]) => {
                     const section = (
                       <div key={subCategory} className="mb-14 last:mb-0">
-                        <motion.div
-                          initial={{ opacity: 0, x: -12 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                          className="flex items-center gap-3 mb-7"
-                        >
+                        <div className="flex items-center gap-3 mb-7">
                           <div className="w-10 h-[1px] bg-brand-accent/60" />
                           <span className="text-base font-black uppercase tracking-[0.1em] text-brand-accent">
                             {subCategory}
                           </span>
                           <div className="h-[1px] flex-1 bg-white/[0.06]" />
-                        </motion.div>
+                        </div>
                         <div className="grid gap-8 lg:gap-12 grid-cols-1 md:grid-cols-3">
                           {projs.map((project) => {
                             const idx = globalIdx++;
@@ -1458,12 +1647,9 @@ export function AllProjects() {
                                 key={project.title}
                                 className="group relative flex flex-col"
                               >
-                                <motion.div
-                                  initial={{ opacity: 0, y: 20 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.15 + idx * 0.06, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                <div
                                   className={cn(
-                                    "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer",
+                                    "relative rounded-3xl overflow-hidden glass aspect-video mb-6 transition-all duration-500 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-brand-accent/5",
                                     project.image
                                   )}
                                   onClick={() => {
@@ -1477,12 +1663,16 @@ export function AllProjects() {
                                       src={project.slides[0]}
                                       alt={project.title}
                                       className="h-full w-full object-cover object-center"
+                                      loading="lazy"
+                                      decoding="async"
                                     />
                                   ) : project.imageUrl ? (
                                     <img
                                       src={project.imageUrl}
                                       alt={project.title}
                                       className="h-full w-full object-cover object-center"
+                                      loading="lazy"
+                                      decoding="async"
                                     />
                                   ) : (
                                     <div className="h-full w-full flex items-center justify-center">
@@ -1515,20 +1705,15 @@ export function AllProjects() {
                                       </a>
                                     ) : null}
                                   </div>
-                                </motion.div>
-                                <motion.div
-                                  initial={{ opacity: 0, y: 10 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.25 + idx * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                                  className="flex flex-col gap-2"
-                                >
+                                </div>
+                                <div className="flex flex-col gap-2">
                                   <div className="flex items-center justify-between">
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-brand-accent">
                                       {project.category}
                                     </span>
                                     <span className="text-[10px] font-mono text-brand-secondary">{String(idx + 1).padStart(2, '0')}</span>
                                   </div>
-                                </motion.div>
+                                </div>
                               </div>
                             );
                           })}
