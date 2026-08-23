@@ -15,7 +15,7 @@ interface Certificate {
   issuer: string;
   gradient: string;
   accentColor: string;
-  imageUrl?: string;  // JPG to display directly
+  imageUrl?: string;  // JPG to display directlyss
   year?: string;
 }
 
